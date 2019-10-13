@@ -1,0 +1,57 @@
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+option csharp_namespace = "AirlyCache";
+
+package AirlyGrpcPackage;
+
+
+service AirlyGrpc {
+	rpc GetMeasurementsByLocation (AirlyRequest) returns (AirlyResponse);
+}
+
+message AirlyRequest {
+	double latitude = 1;
+	double longitude = 2;
+}
+
+message AirlyResponse {
+	int64 FromDateTimeTicks = 1;
+	repeated ValueDescriptor Values = 2;
+	ResponseStatus StatusCode = 3;
+	string ErrorText = 4;
+}
+
+message ValueDescriptor {
+	string name = 1;
+	google.protobuf.DoubleValue value = 2;
+}
+
+
+enum ResponseStatus {
+  OK = 0;
+  NotFound = 1;
+  OtherError = 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
